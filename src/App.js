@@ -8,7 +8,8 @@ class App extends Component {
       // We can only return one root element in JSX
       <div className="App">
         <h1>React App</h1>
-        <Person />
+        <Person name='Ahmad' age='34' />
+        <Person name='Lina' age='30' />
       </div>
     );
     // The above JSX code will get compiled behind the scenes to this JS code by React
