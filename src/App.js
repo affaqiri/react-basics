@@ -10,6 +10,7 @@ class App extends Component {
         <h1>React App</h1>
         <Person name='Ahmad' age='34' />
         <Person name='Lina' age='30' />
+        <Person name='Farhad' age='40'>My Hobbies: fishing</Person>
       </div>
     );
     // The above JSX code will get compiled behind the scenes to this JS code by React
