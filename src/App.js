@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import Person from "./Person/Person" // Custom components must be capital case as best practice
 
 class App extends Component {
   render() {
@@ -7,6 +8,7 @@ class App extends Component {
       // We can only return one root element in JSX
       <div className="App">
         <h1>React App</h1>
+        <Person />
       </div>
     );
     // The above JSX code will get compiled behind the scenes to this JS code by React
@@ -14,4 +16,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App
