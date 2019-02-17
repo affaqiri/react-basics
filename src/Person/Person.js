@@ -1,4 +1,5 @@
 import React from "react"
+import Radium from "radium";
 import './Person.css'
 
 // props is an object passed to our component by React
@@ -14,4 +15,4 @@ const person = (props) => {
   )
 }
 
-export default person
+export default Radium(person)

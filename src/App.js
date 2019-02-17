@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Radium from "radium";
 import './App.css'
 import Person from "./Person/Person" // Custom components must be capital case as best practice
 
@@ -74,7 +75,11 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': { // ':hover' inline style support by Radium
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -91,7 +96,12 @@ class App extends Component {
           })}
         </div>
       );
+      
       style.backgroundColor = 'red'
+      style[':hover'] = { // ':hover' inline style support by Radium
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
 
     const classes = []
@@ -124,4 +134,5 @@ class App extends Component {
   }
 }
 
-export default App
+// Radium is a higher order component
+export default Radium(App)
