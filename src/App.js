@@ -46,7 +46,15 @@ class App extends Component {
     const doesShow = this.state.showPersons
     this.setState({showPersons: !doesShow})
   }
-  
+
+  deletePersonHandler = (personIndex) => {
+    //const persons = this.state.persons  // avoid this approach as we are copying the state
+    //const persons = this.state.persons.slice()  // immutable way of copying the state array
+    const persons = [...this.state.persons] // better approach using ES6 spread operator
+    persons.splice(personIndex, 1)
+    this.setState({ persons: persons })
+  }
+   
   render() {
 
     // CSS in Javascript (inline styling)
@@ -64,10 +72,11 @@ class App extends Component {
     if (this.state.showPersons) {
       persons = (
         <div >
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person, index) => {
             return <Person 
               name={person.name} 
-              age={person.age} />  
+              age={person.age}
+              click={() => this.deletePersonHandler(index)} />
           })}
         </div>
       );
