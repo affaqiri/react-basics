@@ -9,9 +9,9 @@ class App extends Component {
   // state is a reserved keyword in React
   state = {
     persons: [
-      { name: 'Ahmad', age: 34 },
-      { name: 'Lina', age: 30 },
-      { name: 'Farhad', age: 40 }
+      { id: '1', name: 'Ahmad', age: 34 },
+      { id: '2', name: 'Lina', age: 30 },
+      { id: '3', name: 'Farhad', age: 40 }
     ],
     otherStateProperty: 'some other value',
     showPersons: false
@@ -76,6 +76,7 @@ class App extends Component {
             return <Person 
               name={person.name} 
               age={person.age}
+              key={person.id}
               click={() => this.deletePersonHandler(index)} />
           })}
         </div>
