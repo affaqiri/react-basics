@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Radium from "radium";
+import Radium, { StyleRoot } from "radium";
 import './App.css'
 import Person from "./Person/Person" // Custom components must be capital case as best practice
 
@@ -114,20 +114,22 @@ class App extends Component {
 
     return (
       // We can only return one root element in JSX
-      <div className="App">
-        <h1>React App</h1>
-        <p className={classes.join(' ')}>This is a react app</p>
-        <button 
-          style={ style }
-          onClick={this.togglePersonHandler}>
-            Toggle Persons
-        </button>
-        {
-          // {} to write dynamic JS inside JSX, used here for conditionaly rendering some content
-          // but we can't use if block statements, just simple ternary operators
-          persons
-        }
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>React App</h1>
+          <p className={classes.join(' ')}>This is a react app</p>
+          <button 
+            style={ style }
+            onClick={this.togglePersonHandler}>
+              Toggle Persons
+          </button>
+          {
+            // {} to write dynamic JS inside JSX, used here for conditionaly rendering some content
+            // but we can't use if block statements, just simple ternary operators
+            persons
+          }
+        </div>
+      </StyleRoot>
     );
     // The above JSX code will get compiled behind the scenes to this JS code by React
     // return React.createElement('div', { className: 'App'}, React.createElement('h1', null, 'React App'));
