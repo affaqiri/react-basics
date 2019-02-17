@@ -67,9 +67,10 @@ class App extends Component {
 
     // CSS in Javascript (inline styling)
     // These inline styles are not global as with stylesheets and only scoped to this component
-    // We have some restrictions using inline styles for example pseudo styles can not be used
+    // We have some restrictions using inline styles for example pseudo selectors can not be used
     const style = {
-      backgroundColor: 'white', // or 'background-color' because javascript does not allow -
+      backgroundColor: 'green', // or 'background-color' because javascript does not allow -
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -90,6 +91,7 @@ class App extends Component {
           })}
         </div>
       );
+      style.backgroundColor = 'red'
     }
 
     return (
