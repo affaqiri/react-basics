@@ -37,7 +37,7 @@ class App extends Component {
       // We can only return one root element in JSX
       <div className="App">
         <h1>React App</h1>
-        <button onClick={this.switchNameHandler.bind(this, 'Fraidoon')}>Switch Name</button>
+        <button onClick={() => this.switchNameHandler('Fraidoon')}>Switch Name</button>
         <Person 
           name={this.state.persons[0].name} 
           age={this.state.persons[0].age} />
