@@ -13,7 +13,8 @@ class App extends Component {
       { name: 'Lina', age: 30 },
       { name: 'Farhad', age: 40 }
     ],
-    otherStateProperty: 'some other value'
+    otherStateProperty: 'some other value',
+    showPersons: false
   }
 
   switchNameHandler = ( newName ) => {
@@ -40,6 +41,11 @@ class App extends Component {
       ]
     })
   }
+
+  togglePersonHandler = () => {
+    const doesShow = this.state.showPersons
+    this.setState({showPersons: !doesShow})
+  }
   
   render() {
 
@@ -60,22 +66,30 @@ class App extends Component {
         <h1>React App</h1>
         <button 
           style={ style }
-          onClick={() => this.switchNameHandler('Fraidoon')}>
-            Switch Name
+          onClick={this.togglePersonHandler}>
+            Toggle Persons
         </button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age} />
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age} 
-          click={this.switchNameHandler.bind(this, 'Fraid')}
-          changed={this.nameChangedHanlder} />
-        <Person 
-          name={this.state.persons[2].name} 
-          age={this.state.persons[2].age}>
-          My Hobbies: fishing
-        </Person>
+        {
+          // {} to write dynamic JS inside JSX, used here for conditionaly rendering some content
+          // but we can't use if block statements, just simple ternary operators
+          this.state.showPersons ?
+            <div >
+              <Person 
+                name={this.state.persons[0].name} 
+                age={this.state.persons[0].age} />
+              <Person 
+                name={this.state.persons[1].name} 
+                age={this.state.persons[1].age} 
+                click={this.switchNameHandler.bind(this, 'Fraid')}
+                changed={this.nameChangedHanlder} />
+              <Person 
+                name={this.state.persons[2].name} 
+                age={this.state.persons[2].age}>
+                My Hobbies: fishing
+              </Person>
+            </div>
+          : null
+        }
       </div>
     );
     // The above JSX code will get compiled behind the scenes to this JS code by React
