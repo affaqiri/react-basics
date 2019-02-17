@@ -60,6 +60,27 @@ class App extends Component {
       cursor: 'pointer'
     };
 
+    let persons = null;
+    if (this.state.showPersons) {
+      persons = (
+        <div >
+          <Person 
+            name={this.state.persons[0].name} 
+            age={this.state.persons[0].age} />
+          <Person 
+            name={this.state.persons[1].name} 
+            age={this.state.persons[1].age} 
+            click={this.switchNameHandler.bind(this, 'Fraid')}
+            changed={this.nameChangedHanlder} />
+          <Person 
+            name={this.state.persons[2].name} 
+            age={this.state.persons[2].age}>
+            My Hobbies: fishing
+          </Person>
+        </div>
+      );
+    }
+
     return (
       // We can only return one root element in JSX
       <div className="App">
@@ -72,23 +93,7 @@ class App extends Component {
         {
           // {} to write dynamic JS inside JSX, used here for conditionaly rendering some content
           // but we can't use if block statements, just simple ternary operators
-          this.state.showPersons ?
-            <div >
-              <Person 
-                name={this.state.persons[0].name} 
-                age={this.state.persons[0].age} />
-              <Person 
-                name={this.state.persons[1].name} 
-                age={this.state.persons[1].age} 
-                click={this.switchNameHandler.bind(this, 'Fraid')}
-                changed={this.nameChangedHanlder} />
-              <Person 
-                name={this.state.persons[2].name} 
-                age={this.state.persons[2].age}>
-                My Hobbies: fishing
-              </Person>
-            </div>
-          : null
+          persons
         }
       </div>
     );
