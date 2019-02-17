@@ -32,14 +32,22 @@ class App extends Component {
     })
   }
 
-  nameChangedHanlder = ( event ) => {
-    this.setState({
-      persons: [
-        { name: 'Ahmad', age: 34 },
-        { name: event.target.value, age: 30 },
-        { name: 'Farhad', age: 40 }
-      ]
-    })
+  nameChangedHanlder = ( event, id ) => {
+
+    const personIndex = this.state.persons.findIndex(p => {
+      return p.id === id
+    });
+
+    // const person = Object.assign({}, this.state.persons[personIndex]); // alternative old JS object copy style
+    const person = {
+      ...this.state.persons[personIndex]
+    }
+    person.name = event.target.value
+    
+    const persons = [...this.state.persons]
+    persons[personIndex] = person
+
+    this.setState({ persons: persons })
   }
 
   togglePersonHandler = () => {
@@ -77,7 +85,8 @@ class App extends Component {
               name={person.name} 
               age={person.age}
               key={person.id}
-              click={() => this.deletePersonHandler(index)} />
+              click={() => this.deletePersonHandler(index)}
+              changed={(event) => this.nameChangedHanlder(event, person.id)} />
           })}
         </div>
       );
