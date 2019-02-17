@@ -6,12 +6,30 @@ class App extends Component {
   
   // state can only be used withing class components
   // any state change will rerender the DOM tree to reflect the changes
+  // state is a reserved keyword in React
   state = {
     persons: [
       { name: 'Ahmad', age: 34 },
       { name: 'Lina', age: 30 },
       { name: 'Farhad', age: 40 }
-    ]
+    ],
+    otherStateProperty: 'some other value'
+  }
+
+  switchNameHandler = () => {
+    // Do not mutate state like this, instead use react's setState()
+    // this.state.persons[0].name = 'Fraidoon'
+    // setState merges the passed in object with any existing state and updates the DOM
+    // otherStateProperty is not impacted by our updates
+    // So basically React only allows two ways of updating the UI: state and props
+    this.setState({
+      persons: [
+        { name: 'Fraidoon', age: 34 },
+        { name: 'Lina', age: 30 },
+        { name: 'Farhad', age: 40 }
+      ]
+    })
+
   }
   
   render() {
@@ -19,6 +37,7 @@ class App extends Component {
       // We can only return one root element in JSX
       <div className="App">
         <h1>React App</h1>
+        <button onClick={this.switchNameHandler}>Switch Name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}>
