@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Radium, { StyleRoot } from "radium";
 import './App.css'
 import Person from "./Person/Person" // Custom components must be capital case as best practice
 
@@ -41,7 +40,7 @@ class App extends Component {
 
     // const person = Object.assign({}, this.state.persons[personIndex]); // alternative old JS object copy style
     const person = {
-      ...this.state.persons[personIndex]
+      ...this.state.persons[personIndex]  // better way to copy an object reference
     }
     person.name = event.target.value
     
@@ -75,11 +74,7 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer',
-      ':hover': { // ':hover' inline style support by Radium
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
+      cursor: 'pointer'
     };
 
     let persons = null;
@@ -98,10 +93,6 @@ class App extends Component {
       );
       
       style.backgroundColor = 'red'
-      style[':hover'] = { // ':hover' inline style support by Radium
-        backgroundColor: 'salmon',
-        color: 'black'
-      }
     }
 
     const classes = []
@@ -114,27 +105,25 @@ class App extends Component {
 
     return (
       // We can only return one root element in JSX
-      <StyleRoot>
-        <div className="App">
-          <h1>React App</h1>
-          <p className={classes.join(' ')}>This is a react app</p>
-          <button 
-            style={ style }
-            onClick={this.togglePersonHandler}>
-              Toggle Persons
-          </button>
-          {
-            // {} to write dynamic JS inside JSX, used here for conditionaly rendering some content
-            // but we can't use if block statements, just simple ternary operators
-            persons
-          }
-        </div>
-      </StyleRoot>
+      <div className="App">
+        <h1>React App</h1>
+        <p className={classes.join(' ')}>This is a react app</p>
+        <button 
+          style={ style }
+          onClick={this.togglePersonHandler}>
+            Toggle Persons
+        </button>
+        {
+          // {} to write dynamic JS inside JSX, used here for conditionaly rendering some content
+          // but we can't use if block statements, just simple ternary operators
+          persons
+        }
+      </div>
+      
     );
     // The above JSX code will get compiled behind the scenes to this JS code by React
     // return React.createElement('div', { className: 'App'}, React.createElement('h1', null, 'React App'));
   }
 }
 
-// Radium is a higher order component
-export default Radium(App)
+export default App
