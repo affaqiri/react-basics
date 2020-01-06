@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './App.css'
-import Person from "./Person/Person" // Custom components must be capital case as best practice
+import Cockpit from '../components/Cockpit/Cockpit'
+import Persons from "../components/Persons/Persons" // Custom components must be capital case as best practice
 
 class App extends Component {
   
@@ -33,7 +34,6 @@ class App extends Component {
   }
 
   nameChangedHanlder = ( event, id ) => {
-
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id
     });
@@ -64,62 +64,17 @@ class App extends Component {
   }
    
   render() {
-
-    // CSS in Javascript (inline styling)
-    // These inline styles are not global as with stylesheets and only scoped to this component
-    // We have some restrictions using inline styles for example pseudo selectors can not be used
-    const style = {
-      backgroundColor: 'green', // or 'background-color' because javascript does not allow -
-      color: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    };
-
     let persons = null;
     if (this.state.showPersons) {
-      persons = (
-        <div >
-          {this.state.persons.map((person, index) => {
-            return <Person 
-              name={person.name} 
-              age={person.age}
-              key={person.id}
-              click={() => this.deletePersonHandler(index)}
-              changed={(event) => this.nameChangedHanlder(event, person.id)} />
-          })}
-        </div>
-      );
-      
-      style.backgroundColor = 'red'
-    }
-
-    const classes = []
-    if (this.state.persons.length < 2) {
-      classes.push('red')
-    }
-    if (this.state.persons.length < 1) {
-      classes.push('bold')
+      persons = <Persons persons={this.state.persons} clicked={this.deletePersonHandler} changed={this.nameChangedHanlder} />
     }
 
     return (
       // We can only return one root element in JSX
       <div className="App">
-        <h1>React App</h1>
-        <p className={classes.join(' ')}>This is a react app</p>
-        <button 
-          style={ style }
-          onClick={this.togglePersonHandler}>
-            Toggle Persons
-        </button>
-        {
-          // {} to write dynamic JS inside JSX, used here for conditionaly rendering some content
-          // but we can't use if block statements, just simple ternary operators
-          persons
-        }
+        <Cockpit showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonHandler} />
+        { persons }
       </div>
-      
     );
     // The above JSX code will get compiled behind the scenes to this JS code by React
     // return React.createElement('div', { className: 'App'}, React.createElement('h1', null, 'React App'));
