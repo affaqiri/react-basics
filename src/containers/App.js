@@ -3,6 +3,7 @@ import './App.css'
 import Cockpit from '../components/Cockpit/Cockpit'
 import Persons from "../components/Persons/Persons" // Custom components must be capital case as best practice
 
+// Any class component has access to this.props and this.state
 class App extends Component {
   
   // state can only be used withing class components
@@ -72,7 +73,7 @@ class App extends Component {
     return (
       // We can only return one root element in JSX
       <div className="App">
-        <Cockpit showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonHandler} />
+        <Cockpit appTitle={this.props.title} showPersons={this.state.showPersons} persons={this.state.persons} clicked={this.togglePersonHandler} />
         { persons }
       </div>
     );
