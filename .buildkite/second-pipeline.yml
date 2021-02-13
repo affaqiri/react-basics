@@ -1,0 +1,3 @@
+steps:
+  - label: "publish packages to Github & stories to DSM"
+    command: ".buildkite/scripts/publish.sh"

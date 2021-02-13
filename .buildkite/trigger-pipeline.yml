@@ -1,0 +1,18 @@
+steps:
+  - block: "Confirmation!"
+    fields:
+      - select: "Update checkout-ui with any newly published packages?"
+        key: "auto_update_private_packages"
+        options:
+          - label: "Yes"
+            value: "true"
+          - label: "No"
+            value: "false"
+
+  - label: "Prepare First Pipeline"
+    command: ".buildkite/scripts/trigger-first-pipeline.sh"
+  
+  - wait
+  
+  - label: "Second Pipeline"
+    trigger: "second-pipeline"
